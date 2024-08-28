@@ -1,5 +1,5 @@
 # CSManagementSystem
-Customer Support Management System, this project is for students of java data structures using the structures we studied for making a real life project.
+Customer Support Management System, this project is for students of java data structures using data structures for making a real life project.
 
 ## Features
 ### 1. Service Request History (Stack)
