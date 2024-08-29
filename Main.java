@@ -1,8 +1,9 @@
+import structures.Fila;
 import structures.Pilha;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Pilha pilha = new Pilha(5);
+        Fila pilha = new Fila(5);
         pilha.imprime();
         pilha.insere(1);
         pilha.imprime();

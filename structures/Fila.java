@@ -8,6 +8,9 @@ public class Fila {
 
     public Fila(int tamanho) {
         this.tamanho = tamanho;
+        this.inicio = null;
+        this.fim = null;
+        this.vazia = true;
     }
 
     boolean is_cheio() {
@@ -18,38 +21,56 @@ public class Fila {
         return this.vazia;
     }
 
-    void insere(int valor) throws Exception {
+    public void insere(int dado) throws Exception {
         if (this.is_cheio()) {
             throw new Exception("Fila Cheia");
         }
-        this.dados[this.fim] = valor;
-        this.fim = (this.fim + 1) % this.tamanho;
-        this.vazia = false;
+
+        No novo_no = new No(dado);
+
+        if (this.is_vazio()){
+            this.inicio = novo_no;
+            this.fim = novo_no;
+            this.vazia = false;
+            return;
+        }
+
+        this.fim.proximo = novo_no;
+        novo_no.anterior = this.fim;
+        this.fim = this.fim.proximo;
     }
 
-    int remove() throws Exception {
+    public int remove() throws Exception {
         if (this.is_vazio()) {
             throw new Exception("Fila Vazia");
         }
-        int valor = this.dados[inicio];
-        this.inicio = (this.inicio + 1) % this.tamanho;
+        int valor_removido = this.inicio.dado;
+        this.inicio = this.inicio.proximo;
+        if(this.inicio == null){
+            this.fim = null;
+            this.vazia = true;
+            return valor_removido;
+        }
+        this.inicio.anterior = null;
         this.vazia = this.inicio == this.fim;
-        return valor;
+        return valor_removido;
     }
 
-    void imprime() {
+    public void imprime() {
         System.out.print("[");
-        int inicio = this.inicio;
-        if (this.is_cheio()) {
-            System.out.print(this.dados[this.inicio]);
-            System.out.print(",");
-            inicio++;
+
+        if (this.is_vazio()){
+            System.out.println("]");
+            return;
         }
-        for (int i = inicio; i != this.fim; i = (i + 1) % this.tamanho) {
-            if (i != inicio){
+
+        No no = this.inicio;
+        while(no != null){
+            System.out.print(no.dado);
+            no = no.proximo;
+            if(no != null){
                 System.out.print(",");
             }
-            System.out.print(this.dados[i]);
         }
         System.out.println("]");
     }
