@@ -1,8 +1,8 @@
 package structures;
 
-public class Fila {
+public class Fila<T> {
     private final int tamanho;
-    private No inicio;
+    private No<T> inicio;
     private int quantidade;
 
     public Fila(int tamanho) {
@@ -19,12 +19,12 @@ public class Fila {
         return (this.inicio == null);
     }
 
-    public void insere(int dado) throws Exception {
+    public void insere(T dado) throws Exception {
         if (this.is_cheio()) {
             throw new Exception("Fila Cheia");
         }
 
-        No novo_no = new No(dado);
+        No<T> novo_no = new No<T>(dado);
         this.quantidade++;
 
         if (this.is_vazio()){
@@ -40,11 +40,11 @@ public class Fila {
         no.proximo = novo_no;
     }
 
-    public int remove() throws Exception {
+    public T remove() throws Exception {
         if (this.is_vazio()) {
             throw new Exception("Fila Vazia");
         }
-        int valor_removido = this.inicio.dado;
+        T valor_removido = (T) this.inicio.dado;
         this.quantidade--;
         this.inicio = this.inicio.proximo;
         if(this.inicio != null){

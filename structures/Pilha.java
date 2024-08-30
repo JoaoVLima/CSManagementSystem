@@ -1,9 +1,9 @@
 package structures;
 
-public class Pilha {
+public class Pilha<T> {
     private final int tamanho;
     private int topo;
-    private No fim;
+    private No<T> fim;
 
     public Pilha(int tamanho) {
         this.tamanho = tamanho;
@@ -19,12 +19,12 @@ public class Pilha {
         return (this.topo == -1);
     }
 
-    public void insere(int dado) throws Exception {
+    public void insere(T dado) throws Exception {
         if (this.is_cheio()) {
             throw new Exception("Pilha Cheia");
         }
 
-        No novo_no = new No(dado);
+        No<T> novo_no = new No<T>(dado);
 
         if (this.is_vazio()){
             this.fim = novo_no;
@@ -39,11 +39,11 @@ public class Pilha {
         this.fim = this.fim.proximo;
     }
 
-    public int remove() throws Exception {
+    public T remove() throws Exception {
         if (this.is_vazio()) {
             throw new Exception("Pilha Vazia");
         }
-        int valor_removido = this.fim.dado;
+        T valor_removido = (T) this.fim.dado;
         topo--;
         No no = this.fim.anterior;
         this.fim.proximo = null;

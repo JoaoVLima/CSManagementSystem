@@ -1,11 +1,11 @@
 package structures;
 
-public class No {
-    protected int dado;
-    protected No anterior;
-    protected No proximo;
+public class No<T> {
+    protected T dado;
+    protected No<T> anterior;
+    protected No<T> proximo;
 
-    public No(int dado){
+    public No(T dado){
         this.dado = dado;
     }
 }
