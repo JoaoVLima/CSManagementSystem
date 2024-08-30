@@ -3,22 +3,20 @@ package structures;
 public class Fila {
     private final int tamanho;
     private No inicio;
-    private No fim;
-    private boolean vazia;
+    private int quantidade;
 
     public Fila(int tamanho) {
         this.tamanho = tamanho;
         this.inicio = null;
-        this.fim = null;
-        this.vazia = true;
+        this.quantidade = 0;
     }
 
     boolean is_cheio() {
-        return (this.inicio == this.fim && !this.vazia);
+        return (this.quantidade == this.tamanho);
     }
 
     boolean is_vazio() {
-        return this.vazia;
+        return (this.inicio == null);
     }
 
     public void insere(int dado) throws Exception {
@@ -27,17 +25,19 @@ public class Fila {
         }
 
         No novo_no = new No(dado);
+        this.quantidade++;
 
         if (this.is_vazio()){
             this.inicio = novo_no;
-            this.fim = novo_no;
-            this.vazia = false;
             return;
         }
 
-        this.fim.proximo = novo_no;
-        novo_no.anterior = this.fim;
-        this.fim = this.fim.proximo;
+        No no = this.inicio;
+        while(no.proximo != null){
+            no = no.proximo;
+        }
+
+        no.proximo = novo_no;
     }
 
     public int remove() throws Exception {
@@ -45,14 +45,11 @@ public class Fila {
             throw new Exception("Fila Vazia");
         }
         int valor_removido = this.inicio.dado;
+        this.quantidade--;
         this.inicio = this.inicio.proximo;
-        if(this.inicio == null){
-            this.fim = null;
-            this.vazia = true;
-            return valor_removido;
+        if(this.inicio != null){
+            this.inicio.anterior = null;
         }
-        this.inicio.anterior = null;
-        this.vazia = this.inicio == this.fim;
         return valor_removido;
     }
 

@@ -18,6 +18,7 @@ public class Main {
         pilha.insere(5);
         pilha.imprime();
         pilha.remove();
+        pilha.remove();
         pilha.imprime();
         pilha.insere(6);
         pilha.imprime();
