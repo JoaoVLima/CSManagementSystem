@@ -1,11 +1,13 @@
 package management;
 
+import java.util.UUID;
+
 public class Atendimento {
-    public final int id;
+    public final UUID id;
     public String nome;
     public String motivo;
 
-    public Atendimento(int id, String nome, String motivo) {
+    public Atendimento(UUID id, String nome, String motivo) {
         this.id = id;
         this.nome = nome;
         this.motivo = motivo;
@@ -13,6 +15,6 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return "\"" + this.id + "-" + this.nome + "-" + this.motivo + "\"";
+        return "\"" + this.nome + "-" + this.motivo + "\"";
     }
 }

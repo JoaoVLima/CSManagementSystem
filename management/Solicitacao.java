@@ -1,13 +1,14 @@
 package management;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Solicitacao {
-    public final int id;
+    public final UUID id;
     public String descricao;
     public Date data_hora;
 
-    public Solicitacao(int id, String descricao, Date data_hora) {
+    public Solicitacao(UUID id, String descricao, Date data_hora) {
         this.id = id;
         this.descricao = descricao;
         this.data_hora = data_hora;
@@ -15,7 +16,7 @@ public class Solicitacao {
 
     @Override
     public String toString() {
-        return "\"" + this.id + "-" + this.descricao + "-" + this.data_hora + "\"";
+        return "\"" + this.descricao + "-" + this.data_hora + "\"";
     }
 }
 

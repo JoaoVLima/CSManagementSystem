@@ -5,6 +5,7 @@ import structures.Pilha;
 
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -27,11 +28,15 @@ public class Main {
             if (opcao == 1) {
                 System.out.print("Descreva a Solicitação: ");
                 String descricao = scanner.next();
-                Solicitacao nova_solicitacao = new Solicitacao(1, descricao, new Date());
+                Solicitacao nova_solicitacao = new Solicitacao(UUID.randomUUID(), descricao, new Date());
                 historicoSolicitacoes.insere(nova_solicitacao);
                 historicoSolicitacoes.imprime();
             } else if (opcao == 2) {
-                Atendimento novo_atendimento = new Atendimento(1, "a", "b");
+                System.out.print("Nome do Cliente: ");
+                String nome_cliente = scanner.next();
+                System.out.print("Motivo do Atendimento: ");
+                String motivo = scanner.next();
+                Atendimento novo_atendimento = new Atendimento(UUID.randomUUID(), nome_cliente, motivo);
                 ordemAtendimentos.insere(novo_atendimento);
                 ordemAtendimentos.imprime();
             } else if (opcao == 3) {
